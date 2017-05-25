@@ -1,0 +1,15 @@
+{% extends "mail/template.html" %}
+
+{% block content %}
+    <h1>На сайте оставлен новый комментарий</h1>
+
+    <p>Имя: {{ comment.username }}</p>
+    <p>Телефон: {{ comment.phone }}</p>
+    <p>Электронная почта: {{ comment.email }}</p>
+    <p>Дата создания: {{ comment.created_at }}</p>
+    <div>
+        {{ comment.comment }}
+    </div>
+    <hr>
+    <p>{{ owner }}</p>
+{% endblock %}

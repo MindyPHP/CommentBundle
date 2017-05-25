@@ -1,0 +1,13 @@
+<h2 class="b-heading">Комментарии</h2>
+
+{% if comments|length > 0 %}
+    {% for comment in comments %}
+        {% include "comment/_comment.html" with ['comment' => comment] %}
+    {% endfor %}
+{% else %}
+    <div>Комментарии отсутствуют</div>
+{% endif %}
+
+<div class="b-divider b-divider_divider"></div>
+
+{{ form_render(comment_form)|safe }}

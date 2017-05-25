@@ -1,0 +1,30 @@
+<div class="b-comment">
+    <div class="b-comment__header">
+        <div class="b-comment__user">
+            {{ comment.username }}
+        </div>
+        <div class="b-comment__date">{{ comment.created_at }}</div>
+    </div>
+    <div class="b-comment__content">
+        {{ comment.comment }}
+    </div>
+    <div class="b-comment__panel">
+        <a class="b-link" href="#" data-id="{{ comment.id }}"
+           data-form="[name=comment_form]" data-comment="#comment{{ comment.id }}">Комментировать</a>
+        <div>
+            Комментарий полезен?
+            <a data-rating data-target="[data-rating=yes_{{ comment.id }}]" class="b-link" href="{{ url('rating_vote', ['type' => 'comment', 'id' => comment.id, 'vote' => 1]) }}">Да</a>
+            <span data-rating="yes_{{ comment.id }}">{{ comment.yes }}</span> /
+            <a data-rating data-target="[data-rating=no_{{ comment.id }}]" class="b-link" href="{{ url('rating_vote', ['type' => 'comment', 'id' => comment.id, 'vote' => 0]) }}">Нет</a>
+            <span data-rating="no_{{ comment.id }}">{{ comment.no }}</span>
+        </div>
+    </div>
+    <div id="comment{{ comment.id }}"></div>
+    {% if comment.items|length > 0 %}
+        <div class="b-comment__nested">
+            {% for nested_comment in comment.items %}
+                {% include "comment/_comment.html" with ['comment' => nested_comment] %}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

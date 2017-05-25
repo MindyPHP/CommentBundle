@@ -1,0 +1,16 @@
+services:
+    mindy.bundle.comment.form.comment:
+        class: Mindy\Bundle\CommentBundle\Form\CommentForm
+        arguments:
+            - '@security.token_storage'
+        tags:
+            - { name: form.type }
+
+    mindy.bundle.comment.event_listener.comment:
+        class: Mindy\Bundle\CommentBundle\EventListener\CommentListener
+        arguments:
+            - '@mindy.bundle.mail.helper.mail'
+            - '@router'
+            - '%managers%'
+        tags:
+            - { name: kernel.event_listener, method: onComment, event: 'comment_new' }

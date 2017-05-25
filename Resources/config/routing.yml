@@ -1,0 +1,9 @@
+comment_list:
+    path: /
+    defaults:
+        _controller: CommentBundle:Comment:list
+
+comment_create:
+    path: /create
+    defaults:
+        _controller: CommentBundle:Comment:create
